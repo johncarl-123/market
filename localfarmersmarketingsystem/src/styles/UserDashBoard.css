@@ -1,0 +1,40 @@
+/* UserDashboard.css */
+.user-dashboard {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .navigation {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .navigation ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navigation li {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #ddd;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .user-profile {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Add more styles for other sections of the dashboard as needed */
+  
