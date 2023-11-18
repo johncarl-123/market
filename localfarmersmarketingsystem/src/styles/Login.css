@@ -1,0 +1,124 @@
+/* LoginForm.css */
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  height: 470px; /* Adjust the height as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  color: #28292b;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #141616;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #202224;
+}
+
+/* Additional styles for responsiveness */
+@media only screen and (max-width: 400px) {
+  .login-form {
+    width: 90%;
+  }
+}
+
+p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* New styles for the links */
+.forgot-password,
+.sign-up {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.forgot-password a,
+.sign-up a {
+  color: #3498db;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forgot-password a:hover,
+.sign-up a:hover {
+  text-decoration: underline;
+}
+
+/* LoginForm.css */
+
+/* ... (your existing styles) */
+
+/* Center the social login icons both horizontally and vertically */
+.social-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+.social-login button {
+  border-radius: 4px;
+  padding: 10px;
+  margin: 0 5px; /* Add margin between buttons */
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+/* Adjust the size of icons as needed */
+.social-login button svg {
+  margin-right: 8px; /* Add space between icon and text */
+}
+
