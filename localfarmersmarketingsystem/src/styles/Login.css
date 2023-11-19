@@ -1,9 +1,9 @@
-/* LoginForm.css */
+
 
 .login-form {
   width: 100%;
   max-width: 400px;
-  height: 470px; /* Adjust the height as needed */
+  height: 470px; 
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #0e0d0d;
@@ -52,7 +52,7 @@ button:hover {
   background-color: #202224;
 }
 
-/* Additional styles for responsiveness */
+
 @media only screen and (max-width: 400px) {
   .login-form {
     width: 90%;
@@ -75,7 +75,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* New styles for the links */
+
 .forgot-password,
 .sign-up {
   margin-top: 10px;
@@ -95,30 +95,26 @@ a:hover {
   text-decoration: underline;
 }
 
-/* LoginForm.css */
 
-/* ... (your existing styles) */
-
-/* Center the social login icons both horizontally and vertically */
 .social-login {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px; /* Adjust as needed */
+  margin-top: 10px; 
 }
 
 .social-login button {
   border-radius: 4px;
   padding: 10px;
-  margin: 0 5px; /* Add margin between buttons */
+  margin: 0 5px;
   cursor: pointer;
   display: flex;
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
+  align-items: center; 
+  justify-content: center; 
 }
 
-/* Adjust the size of icons as needed */
+
 .social-login button svg {
-  margin-right: 8px; /* Add space between icon and text */
+  margin-right: 8px; 
 }
 
