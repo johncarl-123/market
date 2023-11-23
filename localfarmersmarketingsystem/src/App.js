@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from "./pages/Login";
 import Marketplace from './productList/Marketplace';
 import UserDashboard from './components/UserDashBoard.js';
+import SignUp from './pages/SignUp.js';
 
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
           <Route path="/Login" exact element={<LoginForm />} />
           <Route path="/marketplace" exact element={<Marketplace />} />
           <Route path="/userdashboard" exact element={<UserDashboard />} />
-        </Routes>
-        
+          <Route path="/signup" exact element={<SignUp />} />
+        </Routes>       
         <Footer />
       </Router>
     

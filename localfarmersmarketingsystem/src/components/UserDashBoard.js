@@ -1,5 +1,6 @@
 // UserDashboard.js
 import React from 'react';
+import { Link } from 'react-router-dom'; // Assuming you are using React Router
 import '../styles/UserDashBoard.css';
 
 const UserDashboard = () => {
@@ -7,6 +8,11 @@ const UserDashboard = () => {
     <div className="user-dashboard">
       <div className="navigation">
         <ul>
+          <li>
+            <Link to="/marketplace">
+              <i className="fa fa-home" /> Home
+            </Link>
+          </li>
           <li>Profile</li>
           <li>Settings</li>
           {/* Add more menu items as needed */}

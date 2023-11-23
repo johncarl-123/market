@@ -1,6 +1,7 @@
 // Marketplace.js
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import '../styles/Marketplace.css';
 
 const products = [
@@ -16,13 +17,13 @@ const products = [
   { id: 3, name: 'Product 3', price: 25 },
   { id: 3, name: 'Product 3', price: 25 },
   { id: 3, name: 'Product 3', price: 25 },
-  // Add more products as needed
+  // ... (your product data)
 ];
 
 const Marketplace = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  
-  const filteredProducts = products.filter(product =>
+
+  const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -33,21 +34,27 @@ const Marketplace = () => {
 
   return (
     <div className="marketplace">
-      <h1>Marketplace</h1>
-      
-      {/* Search Bar */}
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
+      <div className="UserDashBoard">
+        <div className="leftSide">
+          <Link to="/userdashboard">Profile</Link>
+        </div>
+        <div className="rightSide">
+        <h1>Marketplace</h1>   
+        </div>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
       </div>
+      
 
       <div className="product-list">
-        {filteredProducts.map(product => (
+        {filteredProducts.map((product) => (
           <div key={product.id} className="product">
             <h2>{product.name}</h2>
             <p>₱{product.price}</p>

@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
-import { FaFacebookSquare, FaGoogle } from 'react-icons/fa'; // Import icons from react-icons
+import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import '../styles/Login.css';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,12 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login submitted:', formData);
+    // Check if login is successful, and then redirect
+    const isLoginSuccessful = true; // Replace with actual logic
+    if (isLoginSuccessful) {
+      // Redirect to the desired page
+      window.location.href = '/marketplace';
+    }
   };
 
   const handleForgotPassword = () => {
@@ -63,7 +69,9 @@ const LoginForm = () => {
           required
         />
 
-        <button type="submit">Log In</button>
+        <div className="centered-button">
+          <button type="submit">Log In</button>
+        </div>
       </form>
 
       <p>
@@ -75,7 +83,7 @@ const LoginForm = () => {
       <p>
         Don't have an account?{' '}
         <a href="#!" onClick={handleSignUp}>
-          Sign up
+        <Link to="/signup">Sign up</Link>
         </a>
       </p>
       <p>or</p>
