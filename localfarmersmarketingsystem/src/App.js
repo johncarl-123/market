@@ -8,6 +8,8 @@ import Marketplace from './productList/Marketplace';
 import UserDashboard from './components/UserDashBoard.js';
 import SignUp from './pages/SignUp.js';
 import Settings from './components/Settings.js';
+import About from './pages/About.js';
+import Contact from './pages/Contact.js';
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
           <Route path="/userdashboard" exact element={<UserDashboard />} />
           <Route path="/signup" exact element={<SignUp />} />
           <Route path="/userdashboard/settings" exact element={<Settings />} />
+          <Route path="/about" exact element={<About />} />
+          <Route path="/contact" exact element={<Contact />} />
         </Routes>       
         <Footer />
       </Router>
