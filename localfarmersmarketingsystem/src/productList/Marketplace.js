@@ -5,19 +5,24 @@ import { Link } from 'react-router-dom'; // Import Link
 import '../styles/Marketplace.css';
 
 const products = [
-  { id: 1, name: 'Product 1', price: 20 },
-  { id: 2, name: 'Product 2', price: 30 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  { id: 3, name: 'Product 3', price: 25 },
-  // ... (your product data)
+  { id: 1, name: 'Eggplant ', price: 20 },
+  { id: 1, name: 'Potato ', price: 20 },
+  { id: 1, name: 'Tomato ', price: 20 },
+  { id: 1, name: 'Letuce ', price: 20 },
+  { id: 1, name: 'Egg ', price: 20 },
+  { id: 1, name: 'Meat ', price: 20 },
+  { id: 1, name: 'Rice ', price: 20 },
+  { id: 1, name: 'Squash ', price: 20 },
+  { id: 1, name: 'SweatPotato ', price: 20 },
+  { id: 1, name: 'Carrot ', price: 20 },
+  { id: 1, name: 'Mango ', price: 20 },
+  { id: 1, name: 'Banana ', price: 20 },
+  { id: 1, name: 'Coconut ', price: 20 },
+  { id: 1, name: 'StarApple ', price: 20 },
+  { id: 1, name: 'StarFruit ', price: 20 },
+  { id: 1, name: 'JackFruit ', price: 20 },
+  
+  
 ];
 
 const Marketplace = () => {
@@ -28,7 +33,6 @@ const Marketplace = () => {
   );
 
   const handleSearch = () => {
-    // You can perform additional actions when the search button is clicked
     console.log('Search button clicked:', searchQuery);
   };
 
@@ -39,7 +43,7 @@ const Marketplace = () => {
           <Link to="/userdashboard">Profile</Link>
         </div>
         <div className="rightSide">
-        <h1>Marketplace</h1>   
+          <h1>Marketplace</h1>
         </div>
         <div className="search-container">
           <input
@@ -51,7 +55,6 @@ const Marketplace = () => {
           <button onClick={handleSearch}>Search</button>
         </div>
       </div>
-      
 
       <div className="product-list">
         {filteredProducts.map((product) => (

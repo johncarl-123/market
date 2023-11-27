@@ -51,7 +51,7 @@
     background-color: #202224;
   }
   
-  /* Additional styles for responsiveness */
+  
   @media only screen and (max-width: 400px) {
     .signup-form {
       width: 90%;

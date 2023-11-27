@@ -1,11 +1,10 @@
 // SignUp.js
-
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css';
 
 const SignUp = () => {
-  const navigate = useNavigate(); // Use useNavigate hook
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -19,19 +18,57 @@ const SignUp = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic for user registration
-    console.log('SignUp submitted:', formData);
-    // You can add API calls or other logic to handle user registration here
+  const someAsyncFunction = async () => {
+    const url = 'http://localhost:127.0.0.1/signup'; // Change the URL to your actual API endpoint
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    };
 
-    // Redirect to the login page after successful signup
-    navigate('/login');
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        throw new Error('Failed to register user');
+      }
+
+      const result = await response.json();
+      console.log(result); // Log the response from the server
+
+      // Check if the signup was successful
+      if (result.success) {
+        // Navigate to login after successful registration
+        navigate('/login');
+      } else {
+        // Handle unsuccessful signup (e.g., display an error message)
+        console.error('Failed to register user');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      throw error; // Rethrow the error to be caught by the outer catch block
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      console.log('SignUp submitted:', formData);
+
+      // Make a real API call to register the user
+      await someAsyncFunction();
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
     <div className="signup-form">
       <h2>Sign Up</h2>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
@@ -72,8 +109,9 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-
+        <Link to="/login">
         <button type="submit">Sign Up</button>
+        </Link>
       </form>
 
       <p>

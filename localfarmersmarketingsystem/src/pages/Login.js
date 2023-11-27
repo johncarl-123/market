@@ -17,32 +17,32 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Check if login is successful, and then redirect
-    const isLoginSuccessful = true; // Replace with actual logic
+    
+    const isLoginSuccessful = true; 
     if (isLoginSuccessful) {
-      // Redirect to the desired page
+      
       window.location.href = '/marketplace';
     }
   };
 
   const handleForgotPassword = () => {
     console.log('Forgot Password clicked');
-    // Add logic to handle forgot password
+    
   };
 
   const handleSignUp = () => {
     console.log("Don't have an account? Sign up clicked");
-    // Add logic to handle sign-up
+   
   };
 
   const handleLoginWithFacebook = () => {
     console.log('Login with Facebook clicked');
-    // Add logic to handle login with Facebook
+    
   };
 
   const handleLoginWithGoogle = () => {
     console.log('Login with Google clicked');
-    // Add logic to handle login with Google
+    
   };
 
   return (
