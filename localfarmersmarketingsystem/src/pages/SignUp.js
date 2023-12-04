@@ -1,16 +1,21 @@
-// SignUp.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css';
 
+
+
 const SignUp = () => {
   const navigate = useNavigate();
+
+  
 
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
+
+    
   });
 
   const handleChange = (e) => {
@@ -19,13 +24,18 @@ const SignUp = () => {
   };
 
   const someAsyncFunction = async () => {
-    const url = 'http://localhost:127.0.0.1/signup'; // Change the URL to your actual API endpoint
+    const url = 'http://localhost:8081/signup'; // Change the URL to your actual API endpoint
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+      }),
     };
 
     try {
@@ -56,7 +66,11 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      console.log('SignUp submitted:', formData);
+      // Check if passwords match
+      if (formData.password !== formData.confirmPassword) {
+        console.error('Passwords do not match');
+        return;
+      }
 
       // Make a real API call to register the user
       await someAsyncFunction();
@@ -65,6 +79,8 @@ const SignUp = () => {
     }
   };
 
+
+  
   return (
     <div className="signup-form">
       <h2>Sign Up</h2>
@@ -109,9 +125,7 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        <Link to="/login">
         <button type="submit">Sign Up</button>
-        </Link>
       </form>
 
       <p>
@@ -119,7 +133,11 @@ const SignUp = () => {
         <Link to="/login">Log in</Link>
       </p>
     </div>
+    
   );
 };
+
+
+
 
 export default SignUp;

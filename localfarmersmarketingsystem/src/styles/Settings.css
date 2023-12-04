@@ -2,56 +2,56 @@
 
 /* General container styling */
 .settings {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #f9f9f9;
-    padding: 20px;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  }
-  
-  /* Back button styling */
-  .back-button {
-    background-color: #141616;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .back-button:hover {
-    background-color: #202224;
-  }
-  
-  /* Individual sections within the settings */
-  .settings-section {
-    margin-bottom: 20px;
-  }
-  
-  /* Section heading styling */
-  .settings-section h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  /* List styling for settings items */
-  .settings-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .settings-list-item {
-    font-size: 18px;
-    margin-bottom: 8px;
-    color: #555;
-  }
-  
-  /* Add more styling as needed */
-  
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #868585;
+  padding: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #fff; /* Set default text color to white */
+}
+
+/* Back button styling */
+.back-button {
+  background-color: #141616;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #202224;
+}
+
+/* Individual sections within the settings */
+.settings-section {
+  margin-bottom: 20px;
+}
+
+/* Section heading styling */
+.settings-section h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #000; /* Set big text color to black */
+}
+
+/* List styling for settings items */
+.settings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.settings-list-item {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #fff; /* Set small text color to white */
+}
+
+/* Add more styling as needed */

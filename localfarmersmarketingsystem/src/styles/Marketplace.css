@@ -1,23 +1,73 @@
 /* Marketplace.css */
 
 .marketplace {
-  width: 105%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #f9f9f9;
+  background-color: #868585;
   padding: 20px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.UserDashBoard {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.UserDashBoard h1 {
+  margin-top: -10px;
+}
+
+.UserDashBoard a {
+  text-decoration: none;
+  color: #030202;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.UserDashBoard a:hover {
+  text-decoration: underline;
+}
+
+.add-product-container {
+  align-self: flex-start; /* Align the "Add Product" container to the left */
+  margin-bottom: 20px; /* Add margin to separate the button from other elements */
+}
+
+.add-product-button {
+  background-color: #141616;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 80px; /* Adjust the size of the plus sign */
+  margin-right: 10px; /* Add margin to separate the button from other elements */
+}
+
+.add-product-button:hover {
+  background-color: #202224;
 }
 
 .search-container {
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input {
+  flex: 1;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
@@ -38,31 +88,6 @@ button:hover {
   background-color: #202224;
 }
 
-.UserDashBoard {
-  width: 50%;
-  padding: 10px;
-  display: flex;
-  flex-direction: row; /* Change to row */
-  justify-content: space-between; /* Add this to separate items */
-  align-items: center;
-  margin-bottom: 20px; /* Adjust as needed */
-}
-
-.UserDashBoard h1 {
-  margin-top: 20px;
-}
-
-.UserDashBoard a {
-  text-decoration: none;
-  color: #333;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.UserDashBoard a:hover {
-  text-decoration: underline;
-}
-
 .product-list-container {
   max-height: 400px;
   overflow-y: auto;
@@ -73,7 +98,8 @@ button:hover {
   flex-wrap: wrap;
   gap: 20px;
   overflow-y: auto;
-  max-height: 60vh;
+  max-height: 100vh;
+  justify-content: center;
 }
 
 .product {
@@ -83,8 +109,14 @@ button:hover {
   border: 1px solid #070707;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Add border-radius for rounded corners */
 }
 
 .product h2 {

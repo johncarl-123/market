@@ -1,10 +1,11 @@
-
 import React, { useState } from 'react';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import '../styles/Login.css';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 
 const LoginForm = () => {
+  const history =useNavigate(); // Use the useHistory hook for programmatic navigation
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -15,34 +16,50 @@ const LoginForm = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const isLoginSuccessful = true; 
-    if (isLoginSuccessful) {
-      
-      window.location.href = '/marketplace';
+
+    try {
+      const response = await fetch('http://localhost:8081/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+        username: formData.username,
+        email: formData.email,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Login successful
+        console.log('Login successful');
+        // Instead of window.location.href, use history.push to navigate to '/marketplace'
+        history.push('/marketplace');
+      } else {
+        // Login failed
+        console.error('Login failed:', data.message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
     }
   };
 
   const handleForgotPassword = () => {
     console.log('Forgot Password clicked');
-    
   };
 
   const handleSignUp = () => {
     console.log("Don't have an account? Sign up clicked");
-   
   };
 
   const handleLoginWithFacebook = () => {
     console.log('Login with Facebook clicked');
-    
   };
 
   const handleLoginWithGoogle = () => {
     console.log('Login with Google clicked');
-    
   };
 
   return (
@@ -82,10 +99,12 @@ const LoginForm = () => {
 
       <p>
         Don't have an account?{' '}
-        <a href="#!" onClick={handleSignUp}>
-        <Link to="/signup">Sign up</Link>
-        </a>
+        {/* Use the Link component for navigation */}
+        <Link to="/signup" onClick={handleSignUp}>
+          Sign up
+        </Link>
       </p>
+
       <p>or</p>
       <div className="social-login">
         <button type="button" onClick={handleLoginWithFacebook}>
