@@ -1,10 +1,12 @@
+// LoginForm.js
+
 import React, { useState } from 'react';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import '../styles/Login.css';
-import { Link,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
-  const history =useNavigate(); // Use the useHistory hook for programmatic navigation
+  const history = useNavigate();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -20,29 +22,30 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
+      console.log('Before fetch');
       const response = await fetch('http://localhost:8081/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-        username: formData.username,
-        email: formData.email,
       });
-
-      const data = await response.json();
+      console.log('After fetch');
 
       if (response.ok) {
-        // Login successful
         console.log('Login successful');
-        // Instead of window.location.href, use history.push to navigate to '/marketplace'
-        history.push('/marketplace');
+        
+        history('/marketplace');
       } else {
-        // Login failed
-        console.error('Login failed:', data.message);
+        
+        const errorData = await response.json();
+        console.error('Login failed:', errorData.message);
+
+       
       }
     } catch (error) {
       console.error('Error during login:', error);
+      
     }
   };
 
@@ -61,6 +64,7 @@ const LoginForm = () => {
   const handleLoginWithGoogle = () => {
     console.log('Login with Google clicked');
   };
+  const [error, setError] = useState(null);
 
   return (
     <div className="login-form">
@@ -88,6 +92,7 @@ const LoginForm = () => {
 
         <div className="centered-button">
           <button type="submit">Log In</button>
+          {error && <p className="error-message">{error}</p>}
         </div>
       </form>
 
@@ -99,7 +104,6 @@ const LoginForm = () => {
 
       <p>
         Don't have an account?{' '}
-        {/* Use the Link component for navigation */}
         <Link to="/signup" onClick={handleSignUp}>
           Sign up
         </Link>

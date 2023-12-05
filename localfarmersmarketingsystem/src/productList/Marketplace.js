@@ -1,12 +1,10 @@
 // Marketplace.js
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AddProductForm from '../components/AddProductForm';
-import DeleteProductForm from '../components/DeleteProductForm';
+
 import '../styles/Marketplace.css';
-
-
 
 const ProductList = ({ products, onDelete }) => (
   <div className="product-list">
@@ -24,6 +22,8 @@ const ProductList = ({ products, onDelete }) => (
 );
 
 const Marketplace = () => {
+  const navigate = useNavigate();
+
   const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
   const [products, setProducts] = useState(storedProducts);
   const [searchQuery, setSearchQuery] = useState('');
@@ -88,15 +88,11 @@ const Marketplace = () => {
         <div className="add-product-container">
           <button onClick={openAddProductForm}>+</button>
         </div>
-        {isAddProductFormVisible && (
-          <AddProductForm addProduct={addProduct} onClose={closeAddProductForm} />
-        )}
+        {isAddProductFormVisible && <AddProductForm addProduct={addProduct} onClose={closeAddProductForm} />}
         <div className="delete-product-container">
-          <button onClick={openDeleteProductForm}>Delete Product</button>
+          
         </div>
-        {isDeleteProductFormVisible && (
-          <DeleteProductForm onDelete={deleteProduct} />
-        )}
+        
         <div className="search-container">
           <input
             type="text"

@@ -31,6 +31,7 @@ app.post('/signup', async (req, res) => {
   if (!username || !email || !password || !confirmPassword) {
     return res.status(400).json({ success: false, message: 'Please fill in all fields' });
   }
+  
 
   if (password !== confirmPassword) {
     return res.status(400).json({ success: false, message: 'Passwords do not match' });
@@ -41,8 +42,8 @@ app.post('/signup', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert user into the database
-    const sql = 'INSERT INTO accounts (username, email, password, confirmPassword) VALUES (?, ?, ?, ?)';
-    db.query(sql, [username, email, password, confirmPassword], (err, result) => {
+    const sql = 'INSERT INTO accounts (username, email, password) VALUES (?, ?, ?)';
+    db.query(sql, [username, email, hashedPassword], (err, result) => {
       if (err) {
         console.error('Error inserting into database:', err);
         return res.status(500).json({ success: false, message: 'Internal Server Error', error: err.message });

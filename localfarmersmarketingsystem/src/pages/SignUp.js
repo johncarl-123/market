@@ -40,26 +40,28 @@ const SignUp = () => {
 
     try {
       const response = await fetch(url, options);
-
+    
       if (!response.ok) {
-        throw new Error('Failed to register user');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to register user');
       }
-
+    
       const result = await response.json();
       console.log(result); // Log the response from the server
-
+    
       // Check if the signup was successful
       if (result.success) {
         // Navigate to login after successful registration
         navigate('/login');
       } else {
         // Handle unsuccessful signup (e.g., display an error message)
-        console.error('Failed to register user');
+        console.error('Failed to register user:', result.message);
       }
     } catch (error) {
-      console.error('Error:', error);
-      throw error; // Rethrow the error to be caught by the outer catch block
+      console.error('Error:', error.message);
+      // Handle the error (e.g., display an error message to the user)
     }
+    
   };
 
   const handleSubmit = async (e) => {
