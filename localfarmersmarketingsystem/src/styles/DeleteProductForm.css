@@ -1,0 +1,47 @@
+/* DeleteProductForm.css */
+
+.delete-product-form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .delete-product-form h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .delete-product-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .delete-product-form label {
+    margin-bottom: 10px;
+  }
+  
+  .delete-product-form input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .delete-product-form button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-product-form button:hover {
+    background-color: #c0392b;
+  }
+  

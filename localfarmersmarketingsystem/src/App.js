@@ -12,6 +12,7 @@ import About from './pages/About.js';
 import Contact from './pages/Contact.js';
 import AddProduct from "./pages/AddProduct.js";
 import AddProductForm from "./components/AddProductForm.js";
+import DeleteProductForm from "./components/DeleteProductForm.js";
 
 
 function App() {
@@ -30,7 +31,10 @@ function App() {
           <Route path="/contact" exact element={<Contact />} />
           <Route path="/addproduct" exact element={<AddProduct />} />
           <Route path="/addproductform" exact element={<AddProductForm />} />
+          <Route path="/deleteproductform" exact element={<DeleteProductForm />} />
+
         </Routes>       
+            
         <Footer />
       </Router>
     

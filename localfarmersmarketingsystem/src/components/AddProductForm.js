@@ -27,6 +27,10 @@ const AddProductForm = ({ addProduct, onClose }) => {
     setProductImage('');
     onClose(); // Close the form
   };
+  
+  AddProductForm.propTypes = {
+    addProduct: PropTypes.func.isRequired,
+  };
 
   return (
     <div className="modal-container">
