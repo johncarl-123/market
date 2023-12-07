@@ -19,7 +19,7 @@ const Settings = () => {
           <li className="settings-list-item">Email Notifications</li>
           <li className="settings-list-item">Payment Information</li>
           <li className="settings-list-item">Delivery Address</li>
-          {/* Add more account-related settings */}
+          {}
         </ul>
       </div>
 
@@ -30,7 +30,7 @@ const Settings = () => {
           <li className="settings-list-item">Notification Preferences</li>
           <li className="settings-list-item">Delivery Alerts</li>
           <li className="settings-list-item">Special Offers</li>
-          {/* Add more notification-related settings */}
+          {}
         </ul>
       </div>
 
@@ -40,7 +40,7 @@ const Settings = () => {
           <li className="settings-list-item">Preferred Farmers</li>
           <li className="settings-list-item">Product Categories of Interest</li>
           <li className="settings-list-item">Delivery Time Preferences</li>
-          {/* Add more marketplace-related preferences */}
+          {}
         </ul>
       </div>
     </div>

@@ -7,7 +7,7 @@ const AddProductForm = ({ addProduct, onClose }) => {
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productDescription, setProductDescription] = useState('');
-  const [productImage, setProductImage] = useState('');
+  const [productImage, setProductImage] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,16 +20,23 @@ const AddProductForm = ({ addProduct, onClose }) => {
     };
 
     addProduct(newProduct);
-    // Clear the form fields after submitting
+
     setProductName('');
     setProductPrice('');
     setProductDescription('');
-    setProductImage('');
-    onClose(); // Close the form
+    setProductImage(null);
+    onClose();
   };
-  
-  AddProductForm.propTypes = {
-    addProduct: PropTypes.func.isRequired,
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProductImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -37,7 +44,6 @@ const AddProductForm = ({ addProduct, onClose }) => {
       <div className="add-product-form">
         <h2>Add Product</h2>
         <form onSubmit={handleSubmit}>
-          {/* Add form fields here */}
           <label>
             Product Name:
             <input
@@ -63,12 +69,8 @@ const AddProductForm = ({ addProduct, onClose }) => {
             />
           </label>
           <label>
-            Product Image URL:
-            <input
-              type="text"
-              value={productImage}
-              onChange={(e) => setProductImage(e.target.value)}
-            />
+            Product Image:
+            <input type="file" accept="image/*" onChange={handleImageChange} />
           </label>
           <button type="submit">Add Product</button>
         </form>

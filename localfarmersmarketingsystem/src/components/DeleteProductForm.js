@@ -9,9 +9,9 @@ const DeleteProductForm = ({ onDelete }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Pass the input value to the onDelete function
+    
     onDelete(inputValue);
-    // Clear the input field after submission
+   
     setInputValue('');
   };
   DeleteProductForm.propTypes = {

@@ -24,7 +24,7 @@ const SignUp = () => {
   };
 
   const someAsyncFunction = async () => {
-    const url = 'http://localhost:8081/signup'; // Change the URL to your actual API endpoint
+    const url = 'http://localhost:8081/signup'; 
     const options = {
       method: 'POST',
       headers: {
@@ -47,19 +47,19 @@ const SignUp = () => {
       }
     
       const result = await response.json();
-      console.log(result); // Log the response from the server
+      console.log(result); 
     
-      // Check if the signup was successful
+      
       if (result.success) {
-        // Navigate to login after successful registration
+        
         navigate('/login');
       } else {
-        // Handle unsuccessful signup (e.g., display an error message)
+       
         console.error('Failed to register user:', result.message);
       }
     } catch (error) {
       console.error('Error:', error.message);
-      // Handle the error (e.g., display an error message to the user)
+    
     }
     
   };
@@ -68,13 +68,13 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      // Check if passwords match
+     
       if (formData.password !== formData.confirmPassword) {
         console.error('Passwords do not match');
         return;
       }
 
-      // Make a real API call to register the user
+      
       await someAsyncFunction();
     } catch (error) {
       console.error('Error:', error);

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/UserDashBoard.css';
 
 const UserDashboard = () => {
-  // Example user data
+  
   const user = {
     name: 'John Carl',
     profile: 'Customer',

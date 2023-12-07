@@ -1,0 +1,64 @@
+/* CartPage.css */
+
+.cart-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #030202;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .cart-item img {
+    max-width: 100px;
+    margin-right: 20px;
+    border-radius: 8px;
+  }
+  
+  .cart-item div {
+    flex-grow: 1;
+  }
+  
+  .cart-item h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .cart-item p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .cart-item p:last-child {
+    margin-top: 10px;
+  }
+  
+  /* Add additional styling as needed */
+  .horizontal-cart-list {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    overflow-x: auto; /* Enable horizontal scrolling if there are many items */
+  }
+  
+  .cart-item {
+    margin-right: 20px; /* Add margin between cart items for spacing */
+  }
+  .cart-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 800px; /* Set the maximum width for the cart container */
+    margin: 0 auto; /* Center the cart container within the cart page */
+  }
+  
+  .cart-item {
+    margin-right: 20px;
+  }  

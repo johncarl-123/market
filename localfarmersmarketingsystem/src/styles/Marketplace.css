@@ -38,8 +38,8 @@
 }
 
 .add-product-container {
-  align-self: flex-start; /* Align the "Add Product" container to the left */
-  margin-bottom: 20px; /* Add margin to separate the button from other elements */
+  align-self: flex-start;
+  margin-bottom: 20px;
 }
 
 .add-product-button {
@@ -49,12 +49,20 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 80px; /* Adjust the size of the plus sign */
-  margin-right: 10px; /* Add margin to separate the button from other elements */
+  font-size: 80px;
+  margin-right: 10px;
 }
 
 .add-product-button:hover {
   background-color: #202224;
+}
+
+.rightSide h1 {
+  color: #000;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .search-container {
@@ -116,7 +124,7 @@ button:hover {
 .product img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px; /* Add border-radius for rounded corners */
+  border-radius: 8px;
 }
 
 .product h2 {
@@ -138,6 +146,7 @@ button:hover {
   cursor: pointer;
   font-size: 14px;
   margin-top: 8px;
+  margin-right: 4px;
 }
 
 .product button:hover {
