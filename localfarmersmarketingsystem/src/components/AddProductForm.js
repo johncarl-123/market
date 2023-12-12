@@ -8,9 +8,18 @@ const AddProductForm = ({ addProduct, onClose }) => {
   const [productPrice, setProductPrice] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productImage, setProductImage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if any of the fields is blank
+    if (!productName || !productPrice || !productDescription || !productImage) {
+      setErrorMessage('Please provide information for all fields.');
+      return;
+    }
+
     const newProduct = {
       id: new Date().getTime(),
       name: productName,
@@ -25,7 +34,15 @@ const AddProductForm = ({ addProduct, onClose }) => {
     setProductPrice('');
     setProductDescription('');
     setProductImage(null);
-    onClose();
+
+    setSuccessMessage('Product Added Successfully');
+
+    // Close the modal and reset success and error messages after a delay
+    setTimeout(() => {
+      setSuccessMessage('');
+      setErrorMessage('');
+      onClose();
+    }, 3000); // Adjust the delay time as needed
   };
 
   const handleImageChange = (e) => {
@@ -43,6 +60,8 @@ const AddProductForm = ({ addProduct, onClose }) => {
     <div className="modal-container">
       <div className="add-product-form">
         <h2>Add Product</h2>
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
           <label>
             Product Name:

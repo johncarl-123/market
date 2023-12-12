@@ -1,25 +1,26 @@
-// LoginForm.js
-
+// FarmersLogin.js
 import React, { useState } from 'react';
-import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
-import '../styles/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import 'cross-fetch/polyfill';
+import '../styles/FarmersLogin.css'; // Add or adjust the CSS file as needed
 
-const LoginForm = () => {
-  const history = useNavigate();
+const FarmersLogin = () => {
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: '',
+    farmers_id: '',
     password: '',
   });
 
   const [errors, setErrors] = useState({
     email: '',
+    farmers_id: '',
     password: '',
     general: '',
   });
 
-  const [successMessage, setSuccessMessage] = useState(''); // New state for success message
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,10 +32,16 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate email and password before making the API call
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!formData.email || !emailRegex.test(formData.email)) {
       setErrors((prevErrors) => ({ ...prevErrors, email: 'Invalid email address' }));
+      return;
+    }
+
+    if (!formData.farmers_id) {
+      setErrors((prevErrors) => ({ ...prevErrors, farmers_id: 'Farmer ID is required' }));
       return;
     }
 
@@ -44,30 +51,39 @@ const LoginForm = () => {
     }
 
     try {
-      console.log('Before fetch');
-      const response = await fetch('http://localhost:8081/login', {
+      const response = await fetch('http://localhost:8082/login/farmer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          farmers_id: formData.farmers_id,
+          password: formData.password,
+        }),
       });
-      console.log('After fetch');
 
       if (response.ok) {
         console.log('Login successful');
         setSuccessMessage('Login successful! Redirecting to the marketplace...');
         setTimeout(() => {
-          history('/marketplace');
-        }, 2000); // Redirect after 2 seconds
+          navigate('/marketplace');
+        }, 2000);
       } else {
         const errorData = await response.json();
         console.error('Login failed:', errorData.message);
-        setErrors({
-          email: errorData.emailError || '',
-          password: errorData.passwordError || '',
-          general: errorData.message || 'Login failed',
-        });
+
+        // Check for specific error conditions, such as invalid Farmer ID
+        if (errorData.farmersIdError === 'Invalid Farmer ID') {
+          setErrors({ farmers_id: 'Invalid Farmer ID', general: '' });
+        } else {
+          setErrors({
+            email: errorData.emailError || '',
+            farmers_id: errorData.farmersIdError || '',
+            password: errorData.passwordError || '',
+            general: errorData.message || 'Login failed',
+          });
+        }
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -75,25 +91,10 @@ const LoginForm = () => {
     }
   };
 
-  const handleForgotPassword = () => {
-    console.log('Forgot Password clicked');
-  };
-
-  const handleSignUp = () => {
-    console.log("Don't have an account? Sign up clicked");
-  };
-
-  const handleLoginWithFacebook = () => {
-    console.log('Login with Facebook clicked');
-  };
-
-  const handleLoginWithGoogle = () => {
-    console.log('Login with Google clicked');
-  };
-
   return (
-    <div className="login-form">
-      <h2>Login</h2>
+    <div className="farmers-login-form">
+      <h2>Farmers Login</h2>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input
@@ -106,6 +107,17 @@ const LoginForm = () => {
         />
         {errors.email && <p className="error-message">{errors.email}</p>}
 
+        <label htmlFor="farmers_id">Farmer ID:</label>
+        <input
+          type="text"
+          id="farmers_id"
+          name="farmers_id"
+          value={formData.farmers_id}
+          onChange={handleChange}
+          required
+        />
+        {errors.farmers_id && <p className="error-message">{errors.farmers_id}</p>}
+
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -117,37 +129,17 @@ const LoginForm = () => {
         />
         {errors.password && <p className="error-message">{errors.password}</p>}
 
-        <div className="centered-button">
-          <button type="submit">Log In</button>
-          {errors.general && <p className="error-message">{errors.general}</p>}
-          {successMessage && <p className="success-message">{successMessage}</p>}
-        </div>
+        <button type="submit">Log In</button>
+        {errors.general && <p className="error-message">{errors.general}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
       </form>
 
       <p>
-        <a href="#!" onClick={handleForgotPassword}>
-          Forgot Password?
-        </a>
-      </p>
-
-      <p>
         Don't have an account?{' '}
-        <Link to="/signup" onClick={handleSignUp}>
-          Sign up
-        </Link>
+        <Link to="/signup/farmer">Sign up</Link>
       </p>
-
-      <p>or</p>
-      <div className="social-login">
-        <button type="button" onClick={handleLoginWithFacebook}>
-          <FaFacebookSquare size={20} />
-        </button>
-        <button type="button" onClick={handleLoginWithGoogle}>
-          <FaGoogle size={20} />
-        </button>
-      </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default FarmersLogin;

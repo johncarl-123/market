@@ -14,7 +14,11 @@ import AddProduct from "./pages/AddProduct.js";
 import AddProductForm from "./components/AddProductForm.js";
 import DeleteProductForm from "./components/DeleteProductForm.js";
 import CartPage from './components/Cart';
-
+import CheckoutPage from "./components/CheckoutPage.js";
+import CheckOutForm from './components/CheckOutForm.js';
+import UserTypeSelectionPage from './pages/UserTypeSelectionPage.js';
+import FarmersSignup from './pages/FarmersSignup.js';
+import FarmersLogin from './pages/FarmersLogin.js';
 
 function App() {
   return (
@@ -23,7 +27,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/Login" exact element={<LoginForm />} />
+          <Route path="/login/customer" exact element={<LoginForm />} />
           <Route path="/marketplace" exact element={<Marketplace />} />
           <Route path="/userdashboard" exact element={<UserDashboard />} />
           <Route path="/signup" exact element={<SignUp />} />
@@ -34,6 +38,11 @@ function App() {
           <Route path="/addproductform" exact element={<AddProductForm />} />
           <Route path="/deleteproductform" exact element={<DeleteProductForm />} />
           <Route path="/cart" exact element={<CartPage />} />
+          <Route path="/checkoutform" exact element={<CheckOutForm />} />
+          <Route path="/checkoutpage" exact element={<CheckoutPage />} />
+          <Route path="/usertypeselectionpage" exact element={<UserTypeSelectionPage />} />
+          <Route path="/signup/farmer" exact element={<FarmersSignup />} />
+          <Route path="/login/farmer" exact element={<FarmersLogin />} />
 
         </Routes>           
         <Footer />

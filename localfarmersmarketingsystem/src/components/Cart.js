@@ -1,10 +1,15 @@
+// CartPage.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import CheckOutForm from '../components/CheckOutForm';
 import '../styles/Cart.css';
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const [modalProduct, setModalProduct] = useState(null);
+  const [checkedOutProduct, setCheckedOutProduct] = useState(null);
 
   const removeFromCart = (productId) => {
     const updatedCart = cart.filter((item) => item.id !== productId);
@@ -16,11 +21,9 @@ const CartPage = () => {
     const productToCheckout = cart.find((item) => item.id === productId);
 
     if (productToCheckout) {
-      const updatedCart = cart.filter((item) => item.id !== productId);
-      setCart(updatedCart);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-      alert(`Checkout successful! Thank you for your purchase of ${productToCheckout.name}.`);
+      setModalProduct(null);
+      setCheckedOutProduct(productToCheckout);
+      setShowCheckoutForm(true);
     } else {
       alert('Product not found in the cart.');
     }
@@ -32,6 +35,29 @@ const CartPage = () => {
 
   const handleCloseModal = () => {
     setModalProduct(null);
+  };
+
+  const handleCheckout = (checkoutDetails) => {
+    console.log('Checkout details:', checkoutDetails);
+
+    const checkedOutProductIndex = cart.findIndex((item) => item.id === checkedOutProduct.id);
+
+    if (checkedOutProductIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart.splice(checkedOutProductIndex, 1);
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+
+    setCheckedOutProduct(null);
+    setShowCheckoutForm(false);
+
+    // Pass checked-out product information to the checkout page
+    navigate('/checkoutpage', { state: { checkedOutProduct } });
+  };
+
+  const handleCancelCheckout = () => {
+    setShowCheckoutForm(false);
   };
 
   return (
@@ -64,6 +90,8 @@ const CartPage = () => {
           </div>
         </div>
       )}
+
+      {showCheckoutForm && <CheckOutForm onCheckout={handleCheckout} onCancel={handleCancelCheckout} />}
     </div>
   );
 };

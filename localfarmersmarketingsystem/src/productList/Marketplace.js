@@ -1,10 +1,7 @@
-// Marketplace.js
-
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AddProductForm from '../components/AddProductForm';
 import '../styles/Marketplace.css';
-
 
 const ProductList = ({ products, onDelete, onAddToCart }) => {
   const [modalProduct, setModalProduct] = useState(null);
@@ -56,12 +53,9 @@ const ProductList = ({ products, onDelete, onAddToCart }) => {
   );
 };
 
-
-
-
-
 const Marketplace = () => {
-  const navigate = useNavigate();
+  // Remove unused 'navigate' variable
+  // const navigate = useNavigate();
 
   const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
   const [products, setProducts] = useState(storedProducts);

@@ -1,54 +1,32 @@
-// SignUp.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import zxcvbn from 'zxcvbn'; // Import the zxcvbn library for password strength check
-import '../styles/SignUp.css';
+import '../styles/FarmersSignup.css'; // Add or adjust the CSS file as needed
 
-const SignUp = () => {
+const FarmersSignup = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    farmers_id: '',
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  const [passwordStrength, setPasswordStrength] = useState({
-    score: 0,
-    feedback: '',
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-
-    // Check password strength on each password input change
-    if (name === 'password') {
-      // Check if the password length is at least six characters
-      if (value.length < 6) {
-        setPasswordStrength({
-          score: 0, // Reset the score for passwords below the minimum length
-          feedback: 'Enter a password with at least six characters.',
-        });
-      } else {
-        const result = zxcvbn(value);
-        setPasswordStrength({
-          score: result.score,
-          feedback: result.feedback.suggestions.join(' '), // Join suggestions into a string
-        });
-      }
-    }
   };
 
   const someAsyncFunction = async () => {
-    const url = 'http://localhost:8081/signup';
+    const url = 'http://localhost:8082/signup/farmer'; // Adjust the backend route
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        farmers_id: formData.farmers_id,
         username: formData.username,
         email: formData.email,
         password: formData.password,
@@ -61,19 +39,19 @@ const SignUp = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to register user');
+        throw new Error(errorData.message || 'Failed to register farmer');
       }
 
       const result = await response.json();
       console.log(result);
 
       if (result.success) {
-        navigate('/login/customer');
+        navigate('/login/farmer'); // Adjust the route as needed
       } else {
-        console.error('Failed to register user:', result.message);
+        console.error('Failed to register farmer:', result.message);
       }
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error('Error during farmer signup:', error.message);
     }
   };
 
@@ -86,12 +64,6 @@ const SignUp = () => {
         return;
       }
 
-      // Check if the password is strong enough (score >= 3 is considered strong)
-      if (passwordStrength.score < 3 || formData.password.length < 6) {
-        console.error('Input a stronger password with at least six characters');
-        return;
-      }
-
       await someAsyncFunction();
     } catch (error) {
       console.error('Error:', error);
@@ -99,10 +71,20 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-form">
-      <h2>Sign Up</h2>
+    <div className="farmers-signup-form">
+      <h2>Farmers Sign Up</h2>
 
       <form onSubmit={handleSubmit}>
+        <label htmlFor="farmers_id">Farmer ID:</label>
+        <input
+          type="id"
+          id="farmers_id"
+          name="farmers_id"
+          value={formData.farmers_id}
+          onChange={handleChange}
+          required
+        />
+
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -132,9 +114,6 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        {passwordStrength.feedback && (
-          <p className="password-strength-feedback">{passwordStrength.feedback}</p>
-        )}
 
         <label htmlFor="confirmPassword">Confirm Password:</label>
         <input
@@ -145,15 +124,16 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
+
         <button type="submit">Sign Up</button>
       </form>
 
       <p>
-        Already have an account?{' '}
-        <Link to="/login/customer">Log in</Link>
+        Already have a farmer account?{' '}
+        <Link to="/login/farmer">Log in</Link>
       </p>
     </div>
   );
 };
 
-export default SignUp;
+export default FarmersSignup;

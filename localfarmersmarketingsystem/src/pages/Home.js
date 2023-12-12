@@ -10,7 +10,7 @@ function Home() {
       <div className="headerContainer" >
         <h1>Local Farmers Market</h1>
         <p>LOCAL PRODUCE PRODUCTS</p>
-        <Link to="/Login">
+        <Link to="/usertypeselectionpage">
           <button>Login</button>
         </Link>  
       </div>

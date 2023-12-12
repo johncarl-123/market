@@ -1,0 +1,91 @@
+/* Cart.css */
+
+.cart-page {
+    text-align: center;
+  }
+  
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .product img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .product div {
+    margin-top: 10px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    max-width: 75%;
+    max-height: 75%;
+    overflow: hidden;
+  }
+  
+  .modal-content img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Add the following styles for the checkout page */
+  .checkout-page {
+    text-align: center;
+  }
+  
+  .checkout-page .product-list {
+    margin-top: 20px;
+  }
+  
+  .checkout-page .product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    text-align: left;
+  }
+  
+  .checkout-page .product img {
+    width: 80px; /* Adjust the width as needed */
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .checkout-page .product div {
+    margin-top: 0;
+  }
+  
+  .checkout-page .modal-content {
+    max-width: 50%; /* Adjust the max-width as needed */
+  }
+  
+  .checkout-page .modal-content img {
+    width: 100%;
+    height: auto;
+  }
+  
