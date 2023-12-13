@@ -1,6 +1,6 @@
 // marketplace.js
 import express from 'express';
-import mysql from 'mysql2/promise';
+import mysql from 'mysql';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
@@ -10,37 +10,36 @@ const port = 8083;
 app.use(cors());
 app.use(bodyParser.json());
 
-const dbConfig = {
+const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '', // Provide your MySQL password
   database: 'user',
-};
+});
 
-const pool = mysql.createPool(dbConfig);
-
-app.post('/api/products', async (req, res) => {
-  try {
-    const { name, price, description, image } = req.body;
-
-    const [result] = await pool.query(
-      'INSERT INTO products (name, price, description, image) VALUES (?, ?, ?, ?)',
-      [name, price, description, image]
-    );
-
-    res.json({ productId: result.insertId });
-  } catch (error) {
-    console.error('Error adding product:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+  } else {
+    console.log('Connected to MySQL database');
   }
 });
 
-app.get('/api/products', async (req, res) => {
+app.post('/addproductform', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM products');
-    res.json(rows);
+    const { name, price, description, image } = req.body;
+
+    const sql = 'INSERT INTO marketplace (name, price, description, image) VALUES (?, ?, ?, ?)';
+    db.query(sql, [name, price, description, image], (err, result) => {
+      if (err) {
+        console.error('Error adding product:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        res.json({ productId: result.insertId });
+      }
+    });
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error adding product:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

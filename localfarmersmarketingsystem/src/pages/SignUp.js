@@ -1,7 +1,6 @@
 // SignUp.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import zxcvbn from 'zxcvbn'; // Import the zxcvbn library for password strength check
 import '../styles/SignUp.css';
 
 const SignUp = () => {
@@ -14,30 +13,15 @@ const SignUp = () => {
     confirmPassword: '',
   });
 
-  const [passwordStrength, setPasswordStrength] = useState({
-    score: 0,
-    feedback: '',
-  });
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-
-    // Check password strength on each password input change
+    // Clear the password error message when the user types
     if (name === 'password') {
-      // Check if the password length is at least six characters
-      if (value.length < 6) {
-        setPasswordStrength({
-          score: 0, // Reset the score for passwords below the minimum length
-          feedback: 'Enter a password with at least six characters.',
-        });
-      } else {
-        const result = zxcvbn(value);
-        setPasswordStrength({
-          score: result.score,
-          feedback: result.feedback.suggestions.join(' '), // Join suggestions into a string
-        });
-      }
+      setPasswordError('');
     }
   };
 
@@ -68,7 +52,10 @@ const SignUp = () => {
       console.log(result);
 
       if (result.success) {
-        navigate('/login/customer');
+        setLoginSuccess(true);
+        setTimeout(() => {
+          navigate('/login/customer');
+        }, 2000); // Adjust the delay as needed
       } else {
         console.error('Failed to register user:', result.message);
       }
@@ -82,13 +69,12 @@ const SignUp = () => {
 
     try {
       if (formData.password !== formData.confirmPassword) {
-        console.error('Passwords do not match');
+        setPasswordError('Enter Stronger Password');
         return;
       }
 
-      // Check if the password is strong enough (score >= 3 is considered strong)
-      if (passwordStrength.score < 3 || formData.password.length < 6) {
-        console.error('Input a stronger password with at least six characters');
+      if (formData.password.length < 6) {
+        setPasswordError('Enter Stronger Password');
         return;
       }
 
@@ -132,8 +118,8 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        {passwordStrength.feedback && (
-          <p className="password-strength-feedback">{passwordStrength.feedback}</p>
+        {passwordError && (
+          <p className="password-error">{passwordError}</p>
         )}
 
         <label htmlFor="confirmPassword">Confirm Password:</label>
@@ -146,6 +132,10 @@ const SignUp = () => {
           required
         />
         <button type="submit">Sign Up</button>
+
+        {loginSuccess && (
+          <p className="success-message" style={{ color: 'black' }}>Registration successful! Redirecting to login...</p>
+        )}
       </form>
 
       <p>

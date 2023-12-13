@@ -131,7 +131,7 @@ const FarmersLogin = () => {
 
         <button type="submit">Log In</button>
         {errors.general && <p className="error-message">{errors.general}</p>}
-        {successMessage && <p className="success-message">{successMessage}</p>}
+        {successMessage && <p className="success-message" style={{ color: 'black' }}>{successMessage}</p>}
       </form>
 
       <p>

@@ -1,14 +1,14 @@
 // CheckoutForm.js
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import  '../styles/CheckoutForm.css'
+import '../styles/CheckoutForm.css';
 
 const CheckoutForm = ({ onCheckout, onCancel, onAddProduct, checkedOutProduct }) => {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
     contactNumber: '',
-    // Additional fields for adding a product
     productName: '',
     productDescription: '',
     productPrice: '',
@@ -21,23 +21,18 @@ const CheckoutForm = ({ onCheckout, onCancel, onAddProduct, checkedOutProduct })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Additional validation logic can be added here
 
     if (onCheckout) {
-      // Call onCheckout function with the form data
       onCheckout(formData);
     } else if (onAddProduct) {
-      // Call onAddProduct function with the product data
       const newProduct = {
         name: formData.productName,
         description: formData.productDescription,
         price: formData.productPrice,
-        // Add other properties as needed
       };
       onAddProduct(newProduct);
     }
 
-    // Close the form after submission
     onCancel();
   };
 
@@ -45,7 +40,6 @@ const CheckoutForm = ({ onCheckout, onCancel, onAddProduct, checkedOutProduct })
     <div className="checkout-form">
       <h2>{onCheckout ? 'Checkout' : 'Add New Product'}</h2>
       <form onSubmit={handleSubmit}>
-        {/* Common fields for checkout and adding a product */}
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
 
@@ -56,7 +50,6 @@ const CheckoutForm = ({ onCheckout, onCancel, onAddProduct, checkedOutProduct })
         <input type="text" id="contactNumber" name="contactNumber" value={formData.contactNumber} onChange={handleChange} required />
 
         {onAddProduct && (
-          // Additional fields for adding a product
           <>
             <label htmlFor="productName">Product Name:</label>
             <input type="text" id="productName" name="productName" value={formData.productName} onChange={handleChange} required />
@@ -69,19 +62,9 @@ const CheckoutForm = ({ onCheckout, onCancel, onAddProduct, checkedOutProduct })
           </>
         )}
 
-{checkedOutProduct && (
-          <div className="checked-out-product">
-            <h2>Checked Out Product</h2>
-            <p>Name: {checkedOutProduct.name}</p>
-            <p>Description: {checkedOutProduct.description}</p>
-            <p>Price: ₱{checkedOutProduct.price}</p>
-            {/* Add other product details as needed */}
-          </div>
-        )}
-
-
         <div className="centered-button">
           <button type="submit">{onCheckout ? 'Submit' : 'Add Product'}</button>
+          {onCancel && <button type="button" onClick={onCancel}>Cancel</button>}
         </div>
       </form>
     </div>
@@ -89,10 +72,10 @@ const CheckoutForm = ({ onCheckout, onCancel, onAddProduct, checkedOutProduct })
 };
 
 CheckoutForm.propTypes = {
-    onCheckout: PropTypes.func,
-    onCancel: PropTypes.func.isRequired,
-    onAddProduct: PropTypes.func,
-    checkedOutProduct: PropTypes.object,
-  };
+  onCheckout: PropTypes.func,
+  onCancel: PropTypes.func,
+  onAddProduct: PropTypes.func,
+  checkedOutProduct: PropTypes.object,
+};
 
 export default CheckoutForm;

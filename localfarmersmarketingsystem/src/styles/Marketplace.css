@@ -184,3 +184,11 @@ button:hover {
   width: auto;
   height: auto;
 }
+
+.success-message {
+  
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
